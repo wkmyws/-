@@ -29,6 +29,12 @@ namespace 库存管理系统
         {
             Msql sql = new Msql();
             string authority = "1";
+            // 检测是否为外键
+            if (sql.exist(String.Format("select * from record where usr='{0}' limit 1;", _usr.Text)))
+            {
+                MessageBox.Show("无法删除此人员，因为他管理过库存（库存表中有此人员的操作记录）");
+                return;
+            }
             var ans = sql.modify(String.Format("delete from user where usr='{0}' and authority='{1}'", _usr.Text, authority));
             if (ans == false)
             {

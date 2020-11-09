@@ -32,6 +32,7 @@ namespace 库存管理系统
             lastdate.Text=r.lastdate;
             company.Text = r.company;
             this.r = r;
+            no.Enabled = false;
 
             // 删除原有商品记录
             //Msql sql = new Msql();
@@ -89,13 +90,32 @@ namespace 库存管理系统
             Msql sql = new Msql();
             if (this.Text == "修改商品属性")
             {
-                sql.modify(String.Format("delete from goods where no='{0}';", r.商品编号));
+                //sql.modify(String.Format("delete from goods where no='{0}';", r.商品编号));
+                var r = new JSON(no.Text, name.Text, price.Text, type.Text, date.Value.ToString(), lastdate.Text, company.Text, num.Text);
+                if (JSON.updateToDatabase(r))
+                {
+                    MessageBox.Show("修改成功！");
+                    switch (pageType)
+                    {
+                        case "Admin":
+                            ((Admin)(this.FatherPage)).flashData();
+                            break;
+                        default:
+                            break;
+                    }
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("修改失败！");
+                }
+                return;
             }
-            
-            bool ans=sql.modify(
+
+            bool ans = sql.modify(
                 String.Format(
-                "insert into goods(no,name,price,type,date,lastdate,company,num) values('{0}','{1}',{2},'{3}','{4}',{5},'{6}',0)",
-                no.Text, name.Text, price.Text, type.Text, date.Value.ToString(), lastdate.Text, company.Text));
+                "insert into goods(no,name,price,type,date,lastdate,company,num) values('{0}','{1}',{2},'{3}','{4}',{5},'{6}','{7}')",
+                no.Text, name.Text, price.Text, type.Text, date.Value.ToString(), lastdate.Text, company.Text, num.Text));
             if (ans == false)
             {
                 MessageBox.Show("商品编号重复，请重新输入！");
@@ -138,12 +158,25 @@ namespace 库存管理系统
         private void button2_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("确定重置所填内容吗？", "", MessageBoxButtons.OKCancel) != DialogResult.OK) return;
-            no.Text = name.Text = price.Text = type.Text = date.Text = lastdate.Text = company.Text = "";
+            no.Text = name.Text = price.Text = type.Text = date.Text = lastdate.Text = company.Text = num.Text = "";
         }
 
         private void AddGoods_Load(object sender, EventArgs e)
         {
-            
+            if (this.pageType == "readOnly")
+            {
+                this.Text = "商品详情";
+                button2.Visible = false;
+                button1.Visible = false;
+                no.Enabled = false;
+                name.Enabled = false;
+                price.Enabled = false;
+                type.Enabled = false;
+                date.Enabled = false;
+                lastdate.Enabled = false;
+                company.Enabled = false;
+                num.Enabled = false;
+            }
         }
     }
 }

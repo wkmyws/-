@@ -59,7 +59,7 @@ namespace 库存管理系统
                 return;
             }
             {
-                _Main.successLogin(Convert.ToInt32(ans[0][0]));
+                _Main.successLogin(Convert.ToInt32(ans[0][0]), _usr.Text);
                 unexpectExit = false;
                 this.Close();
             }

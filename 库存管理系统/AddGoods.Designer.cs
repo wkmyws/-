@@ -44,6 +44,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.company = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.num = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -102,7 +104,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(81, 272);
+            this.button1.Location = new System.Drawing.Point(81, 283);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(174, 33);
             this.button1.TabIndex = 6;
@@ -177,13 +179,31 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(5, 272);
+            this.button2.Location = new System.Drawing.Point(5, 283);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(69, 33);
             this.button2.TabIndex = 16;
-            this.button2.Text = "重置";
+            this.button2.Text = "清空内容";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // num
+            // 
+            this.num.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.num.Location = new System.Drawing.Point(81, 248);
+            this.num.Name = "num";
+            this.num.Size = new System.Drawing.Size(174, 21);
+            this.num.TabIndex = 18;
+            this.num.Text = "0";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(10, 257);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(65, 12);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "初始数量：";
             // 
             // AddGoods
             // 
@@ -192,6 +212,8 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(270, 328);
+            this.Controls.Add(this.num);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.company);
             this.Controls.Add(this.label7);
@@ -239,5 +261,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox company;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox num;
+        private System.Windows.Forms.Label label8;
     }
 }

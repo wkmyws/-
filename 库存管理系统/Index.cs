@@ -21,25 +21,25 @@ namespace 库存管理系统
 
         public void initLogin()
         {
-            //Admin _Login = new Admin(this);
-            Login _Login = new Login(this);
+            Admin _Login = new Admin(this,"Admin","admin");
+            //Login _Login = new Login(this);
             _Login.Show();
         }
 
-        public void successLogin(int identify)
+        public void successLogin(int identify, string usr)
         {
             //MessageBox.Show(identify.ToString());
             if (identify == 0)
             {
                 // 管理员页面
-                Admin _Admin = new Admin(this);
+                Admin _Admin = new Admin(this, "Admin", usr);
                 _Admin.Show();
             }
             else if (identify == 1)
             {
                 // User 页面
                 //User _User = new User(this);
-                Admin _User = new Admin(this, "User");
+                Admin _User = new Admin(this, "User", usr);
                 _User.Show();
             }
             else
