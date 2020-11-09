@@ -68,5 +68,13 @@ namespace 库存管理系统
         {
             return select(sql).Count != 0;
         }
+
+        public static string safetySql(string sql)
+        {
+            // 安全字符转换
+            var a = "";
+            return a;
+        }
+
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace 库存管理系统
 {
@@ -201,17 +202,65 @@ namespace 库存管理系统
 
             if (r.type == "全文搜索")
             {
-                // 出库！！！！！！！！！！！！
                 List<string> tmp = new List<string>();
-                foreach (var item in dict.Values)
+                foreach (var item in dict.Keys)
                 {
-                    tmp.Add(String.Format("{0} {1} '{2}'", item, r.关系, r.值));
+                    if (r.关系 != "RegExp")
+                    {
+                        if (item == "出库数量" && new Regex("^\\d+$").IsMatch(r.值))
+                        {
+                            if (new Regex(">").IsMatch(r.关系))
+                            {
+                                r.关系 = new Regex(">").Replace(r.关系, "<");
+                            }
+                            else r.关系 = new Regex("<").Replace(r.关系, ">");
+
+                            tmp.Add(String.Format("({0} {1} -{2} and opNum<=0)", dict[item], r.关系, r.值));
+                        }
+                        else if (item == "入库数量") tmp.Add(String.Format("({0} {1} '{2}' and opNum>=0)", dict[item], r.关系, r.值));
+                        else if (item == "生产日期")
+                        {
+                            bool hasError = false;
+                            try
+                            {
+                                Convert.ToDateTime(dict[item]);
+                            }
+                            catch (Exception err) { hasError = true; }
+                            if (hasError == false) tmp.Add(String.Format("{0} {1} '{2}'", dict[item], r.关系, r.值));
+                        }
+                        else tmp.Add(String.Format("{0} {1} '{2}'", dict[item], r.关系, r.值));
+                    }
+                    else
+                    {
+                        tmp.Add(String.Format("{0} {1} '{2}'", dict[item], r.关系, r.值));
+                    }
+                    
                 }
                 return "(" + String.Join(" or ", tmp) + ")";
             }
 
-            if (r.type == "出库数量") r.值 = "-" + r.值;
-            return String.Format("({0} {1} '{2}')", dict[r.类别], r.关系, r.值);
+            var _item = r.类别;
+            List<string> _tmp = new List<string>();
+            if (r.关系 != "RegExp")
+            {
+                if (_item == "出库数量" && new Regex("^\\d+$").IsMatch(r.值))
+                {
+                    if (new Regex(">").IsMatch(r.关系))
+                    {
+                        r.关系 = new Regex(">").Replace(r.关系, "<");
+                    }
+                    else r.关系 = new Regex("<").Replace(r.关系, ">");
+
+                    _tmp.Add(String.Format("({0} {1} -{2} and opNum<=0)", dict[_item], r.关系, r.值));
+                }
+                else if (_item == "入库数量") _tmp.Add(String.Format("({0} {1} '{2}' and opNum>=0)", dict[_item], r.关系, r.值));
+                else _tmp.Add(String.Format("{0} {1} '{2}'", dict[_item], r.关系, r.值));
+            }
+            else
+            {
+                _tmp.Add(String.Format("{0} {1} '{2}'", dict[_item], r.关系, r.值));
+            }
+            return "(" + String.Join(" or ", _tmp) + ")";
         }
         public string type, op, val;
         public string 类别
@@ -230,19 +279,34 @@ namespace 库存管理系统
             set { this.val = value; }
         }
     }
+
     public class UNION_GOODS
     {
-        public UNION_GOODS(string cond)
+        public UNION_GOODS(List<string> data)
         {
-            string sql = string.Format("select * from goods,record {0};", cond);
-            MessageBox.Show(sql);
-            var ans = (new Msql().select(sql));
-            string nnn = "";
-            foreach (var ii in ans)
-            {
-                nnn += "\n" + String.Join("  ", ii);
-            }
-            MessageBox.Show(nnn);
+            no = data[0];
+            name = data[1];
+            price = data[2];
+            type = data[3];
+            date = data[4];
+            lastdate = data[5];
+            company = data[6];
+            num = data[7];
+            ddno = data[8];
+            usr = data[9];
+            opNum = data[10];
         }
+        public string no, name, price, type, date, lastdate, company, num, ddno, usr, opNum;
+        public string 商品编号 { get { return no; } }
+        public string 商品名 { get { return name; } }
+        public string 商品价格 { get { return price; } }
+        public string 商品种类 { get { return type; } }
+        public string 生产日期 { get { return date; } }
+        public string 保质期 { get { return lastdate; } }
+        public string 所属公司 { get { return company; } }
+        public string 数量 { get { return num; } }
+        public string 订单号 { get { return ddno; } }
+        public string 操作者 { get { return usr; } }
+        public string 出入库数量 { get { return opNum; } }
     }
 }

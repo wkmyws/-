@@ -338,13 +338,18 @@ namespace 库存管理系统
                     label15.Text = this.usrName;
                     break;
                 case "查询统计":
+                    this.tabControl1.Size = new System.Drawing.Size(857, 399);
                     DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+                    筛选表.DataSource = new EMPTY();
+                    filter_table.Clear();
                     btn.Name = "btnDel";
                     btn.HeaderText = "操作";
                     btn.DefaultCellStyle.NullValue = "删除";
+                    筛选表.Columns.Clear();
                     筛选表.Columns.Add(btn);
                     类别.SelectedIndex = 0;
                     关系.SelectedIndex = 0;
+                    button16Click();
                     break;
                 //default: MessageBox.Show("未识别的选项卡"); break;
             }
@@ -534,7 +539,14 @@ namespace 库存管理系统
             筛选表.DataSource = filter_table;
         }
         private void button15_Click(object sender, EventArgs e)
-        {  
+        {
+            if (类别.Text == "全文搜索" && 关系.Text == "=")
+            {
+                if (MessageBox.Show("mysql推荐使用正则表达式（RegExp）进行全文搜索，\n是否切换到推荐设置？", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    关系.Text = "RegExp";
+                }
+            }
             filter_table.Add(new FILTER_TABLE(类别.Text, 关系.Text, 值.Text));
             flash筛选表();
         }
@@ -550,16 +562,45 @@ namespace 库存管理系统
                 }
             }
         }
-
-        private void button16_Click(object sender, EventArgs e)
+        List<UNION_GOODS> searchCountAns;
+        private void button16Click()
         {
+            button16.Enabled = false;
+            button16.Text = "正在筛选";
             List<string> filList = new List<string>();
             foreach (var ee in filter_table)
             {
                 filList.Add(FILTER_TABLE.toSQL(ee));
             }
-            var sql_where=" where "+(String.Join(" and ", filList));
-            UNION_GOODS a = new UNION_GOODS(sql_where);
+            var sql_where = filList.Count == 0 ? "" : (" where " + (String.Join(" and ", filList)));
+            sql_where = "select * from goods left join record on goods.no=record.no " + sql_where + ";";
+            var ans = new Msql().select(sql_where);
+            searchCountGrid.DataSource = new EMPTY();
+            searchCountAns = new List<UNION_GOODS>();
+            for (int i = 0; i < ans.Count(); i++)
+            {
+                searchCountAns.Add(new UNION_GOODS(ans[i]));
+            }
+            searchCountGrid.DataSource = searchCountAns;
+            foreach (DataGridViewColumn column in searchCountGrid.Columns)
+            {
+                //设置自动排序
+                column.SortMode = DataGridViewColumnSortMode.Automatic;
+            }
+            button16.Text = "筛            选";
+            button16.Enabled = true;
+        }
+        private void button16_Click(object sender, EventArgs e)
+        {
+            button16Click();
+        }
+
+        private void 类别_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (类别.Text == "全文搜索")
+            {
+                关系.Text = "RegExp";
+            }
         }
 
 
