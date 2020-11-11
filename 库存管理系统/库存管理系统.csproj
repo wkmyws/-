@@ -161,11 +161,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="html\src\goods\goods.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="html\css\" />
-    <Folder Include="html\js\" />
+    <Folder Include="public\icons\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

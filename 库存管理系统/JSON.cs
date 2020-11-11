@@ -290,8 +290,8 @@ namespace 库存管理系统
             type = data[3];
             date = data[4];
             lastdate = data[5];
-            company = data[6];
-            num = data[7];
+            num = data[6];
+            company = data[7];
             ddno = data[8];
             usr = data[9];
             opNum = data[10];

@@ -33,7 +33,7 @@ namespace 库存管理系统
         private void Admin_Load(object sender, EventArgs e)
         {
             flashData();
-            table.Columns[0].ReadOnly = true;// 不可更改列
+            if (table.Columns.Count > 0) table.Columns[0].ReadOnly = true;// 不可更改列
             
             button13_Click();
             this.that=this;
@@ -71,7 +71,7 @@ namespace 库存管理系统
                 list.Add(tmp);
             }
             table.DataSource = list;
-            table.Columns[0].ReadOnly = true;
+            if (table.Columns.Count > 0) table.Columns[0].ReadOnly = true;
         }
 
         private void Admin_FormClosed(object sender, FormClosedEventArgs e)
@@ -567,6 +567,8 @@ namespace 库存管理系统
         {
             button16.Enabled = false;
             button16.Text = "正在筛选";
+
+            // 拼接 筛选表 为 sql查询语句
             List<string> filList = new List<string>();
             foreach (var ee in filter_table)
             {
@@ -574,6 +576,8 @@ namespace 库存管理系统
             }
             var sql_where = filList.Count == 0 ? "" : (" where " + (String.Join(" and ", filList)));
             sql_where = "select * from goods left join record on goods.no=record.no " + sql_where + ";";
+
+            // 查询并将结果显示在searchCountGrid
             var ans = new Msql().select(sql_where);
             searchCountGrid.DataSource = new EMPTY();
             searchCountAns = new List<UNION_GOODS>();
@@ -582,11 +586,14 @@ namespace 库存管理系统
                 searchCountAns.Add(new UNION_GOODS(ans[i]));
             }
             searchCountGrid.DataSource = searchCountAns;
+
+            //设置自动排序
             foreach (DataGridViewColumn column in searchCountGrid.Columns)
             {
-                //设置自动排序
                 column.SortMode = DataGridViewColumnSortMode.Automatic;
             }
+
+
             button16.Text = "筛            选";
             button16.Enabled = true;
         }
@@ -601,6 +608,16 @@ namespace 库存管理系统
             {
                 关系.Text = "RegExp";
             }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show("自己摸索吧");
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
         }
 
 
