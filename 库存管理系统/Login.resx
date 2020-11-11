@@ -486,7 +486,7 @@
         s9Mf1l9+h/r+hGOJZTKWzVhGY1mNZfbKe/qePft/TyPB/lwUsIAAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="paw.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="paw.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
         JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAB3RJTUUH5AsLESwWMdFSnAAAH/9JREFU

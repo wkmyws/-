@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace 库存管理系统
 {
@@ -23,7 +24,7 @@ namespace 库存管理系统
             this.FatherPage = FatherPage;
             this.pageType = pageType;// Admin User
             this.Text = "修改商品属性";// never change this !!!!!!!!!!!!!!!!!
-            button1.Text = "修改商品属性";
+            button1.Text = "      修改商品属性";
             no.Text = r.no;
             name.Text = r.name;
             price.Text = r.price;
@@ -33,6 +34,8 @@ namespace 库存管理系统
             company.Text = r.company;
             this.r = r;
             no.Enabled = false;
+            pictureBox18.Visible = false;
+            button2.Visible = false;
 
             // 删除原有商品记录
             //Msql sql = new Msql();
@@ -176,6 +179,20 @@ namespace 库存管理系统
                 lastdate.Enabled = false;
                 company.Enabled = false;
                 num.Enabled = false;
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Multiselect = false;
+            dialog.Title = "选择图片文件";
+            dialog.Filter = "图片文件(*.jpg,*.gif,*.bmp)|*.jpg;*jpeg;*.gif;*.bmp";
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                avator.Image = Image.FromFile(dialog.FileName);
+                //var sss = FileExt.ConvertImageToBase64(dialog.FileName);
+                //avator.Image = FileExt.ConvertBase64ToImage(sss);
             }
         }
     }

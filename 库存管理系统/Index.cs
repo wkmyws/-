@@ -21,8 +21,8 @@ namespace 库存管理系统
 
         public void initLogin()
         {
-            //Admin _Login = new Admin(this,"Admin","admin");
-            Login _Login = new Login(this);
+            Admin _Login = new Admin(this,"Admin","admin");
+            //Login _Login = new Login(this);
             _Login.Show();
         }
 

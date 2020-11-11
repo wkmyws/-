@@ -52,18 +52,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(84, 108);
+            this.label1.Location = new System.Drawing.Point(105, 135);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.Size = new System.Drawing.Size(52, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "用户名";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(84, 140);
+            this.label2.Location = new System.Drawing.Point(105, 175);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.Size = new System.Drawing.Size(53, 15);
             this.label2.TabIndex = 1;
             this.label2.Text = "密  码";
             // 
@@ -71,35 +73,39 @@
             // 
             this._usr.BackColor = System.Drawing.SystemColors.Window;
             this._usr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._usr.Location = new System.Drawing.Point(139, 105);
+            this._usr.Location = new System.Drawing.Point(174, 131);
+            this._usr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this._usr.Name = "_usr";
-            this._usr.Size = new System.Drawing.Size(100, 21);
+            this._usr.Size = new System.Drawing.Size(124, 25);
             this._usr.TabIndex = 2;
             // 
             // _pwd
             // 
             this._pwd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._pwd.Location = new System.Drawing.Point(139, 138);
+            this._pwd.Location = new System.Drawing.Point(174, 172);
+            this._pwd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this._pwd.Name = "_pwd";
-            this._pwd.Size = new System.Drawing.Size(100, 21);
+            this._pwd.Size = new System.Drawing.Size(124, 25);
             this._pwd.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(94, 38);
+            this.label3.Location = new System.Drawing.Point(118, 48);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(158, 31);
+            this.label3.Size = new System.Drawing.Size(197, 39);
             this.label3.TabIndex = 5;
             this.label3.Text = "库存管理系统";
             // 
             // 登录
             // 
-            this.登录.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.登录.Location = new System.Drawing.Point(58, 205);
+            this.登录.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.登录.Location = new System.Drawing.Point(72, 256);
+            this.登录.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.登录.Name = "登录";
-            this.登录.Size = new System.Drawing.Size(180, 28);
+            this.登录.Size = new System.Drawing.Size(225, 35);
             this.登录.TabIndex = 4;
             this.登录.Text = "  登录";
             this.登录.UseVisualStyleBackColor = true;
@@ -108,9 +114,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(84, 173);
+            this.label4.Location = new System.Drawing.Point(105, 216);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 12);
+            this.label4.Size = new System.Drawing.Size(53, 15);
             this.label4.TabIndex = 6;
             this.label4.Text = "权  限";
             // 
@@ -121,17 +128,19 @@
             this.authority.Items.AddRange(new object[] {
             "管理员",
             "用户"});
-            this.authority.Location = new System.Drawing.Point(139, 170);
+            this.authority.Location = new System.Drawing.Point(174, 212);
+            this.authority.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.authority.Name = "authority";
-            this.authority.Size = new System.Drawing.Size(100, 20);
+            this.authority.Size = new System.Drawing.Size(124, 23);
             this.authority.TabIndex = 8;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(58, 105);
+            this.pictureBox1.Location = new System.Drawing.Point(72, 131);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox1.Size = new System.Drawing.Size(25, 25);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 36;
             this.pictureBox1.TabStop = false;
@@ -139,9 +148,10 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(58, 138);
+            this.pictureBox2.Location = new System.Drawing.Point(72, 172);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox2.Size = new System.Drawing.Size(25, 25);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 37;
             this.pictureBox2.TabStop = false;
@@ -149,20 +159,24 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(58, 168);
+            this.pictureBox3.Location = new System.Drawing.Point(72, 210);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox3.Size = new System.Drawing.Size(25, 25);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 38;
             this.pictureBox3.TabStop = false;
             // 
             // paw
             // 
+            this.paw.BackColor = System.Drawing.Color.Transparent;
+            this.paw.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("paw.BackgroundImage")));
+            this.paw.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.paw.Enabled = false;
-            this.paw.Image = ((System.Drawing.Image)(resources.GetObject("paw.Image")));
-            this.paw.Location = new System.Drawing.Point(113, 209);
+            this.paw.Location = new System.Drawing.Point(141, 261);
+            this.paw.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.paw.Name = "paw";
-            this.paw.Size = new System.Drawing.Size(20, 20);
+            this.paw.Size = new System.Drawing.Size(25, 25);
             this.paw.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.paw.TabIndex = 39;
             this.paw.TabStop = false;
@@ -170,19 +184,20 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(49, 29);
+            this.pictureBox5.Location = new System.Drawing.Point(61, 36);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox5.Size = new System.Drawing.Size(62, 62);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox5.TabIndex = 40;
             this.pictureBox5.TabStop = false;
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(355, 328);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.paw);
             this.Controls.Add(this.pictureBox3);
@@ -197,6 +212,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.登录);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Login";

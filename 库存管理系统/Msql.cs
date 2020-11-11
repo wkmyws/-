@@ -54,8 +54,8 @@ namespace 库存管理系统
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
-                MessageBox.Show("数据库连接失败！请检查网络是否畅通！");
+                MessageBox.Show(ex.Message);
+                //MessageBox.Show("数据库连接失败！请检查网络是否畅通！");
             }
             finally
             {

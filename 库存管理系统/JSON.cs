@@ -293,8 +293,9 @@ namespace 库存管理系统
             num = data[6];
             company = data[7];
             ddno = data[8];
-            usr = data[9];
-            opNum = data[10];
+            var record_no = data[9];
+            usr = data[10];
+            opNum = data[11];
         }
         public string no, name, price, type, date, lastdate, company, num, ddno, usr, opNum;
         public string 商品编号 { get { return no; } }
@@ -307,6 +308,7 @@ namespace 库存管理系统
         public string 数量 { get { return num; } }
         public string 订单号 { get { return ddno; } }
         public string 操作者 { get { return usr; } }
-        public string 出入库数量 { get { return opNum; } }
+        public string 入库数量 { get { return (opNum==""?opNum:(opNum[0]=='-'?"":opNum)); } }
+        public string 出库数量 { get { return (opNum==""?opNum:(opNum[0]=='-'?opNum.Substring(1):"")); } }
     }
 }
