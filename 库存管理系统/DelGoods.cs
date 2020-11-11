@@ -48,6 +48,8 @@ namespace 库存管理系统
             Msql sql = new Msql();
             if (sql.modify(String.Format("delete from goods where no={0};", textBox1.Text)))
             {
+                // 删除图片
+                sql.modify(String.Format("delete from goods_avator where no='{0}';", textBox1.Text));
                 MessageBox.Show("删除成功！");
                 ((Admin)this.FatherPage).flashData();
                 this.Close();

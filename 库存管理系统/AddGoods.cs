@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace 库存管理系统
 {
@@ -32,11 +33,12 @@ namespace 库存管理系统
             date.Text=r.date;
             lastdate.Text=r.lastdate;
             company.Text = r.company;
+            num.Text = r.num;
             this.r = r;
             no.Enabled = false;
             pictureBox18.Visible = false;
-            button2.Visible = false;
-
+            //button2.Visible = false;
+            
             // 删除原有商品记录
             //Msql sql = new Msql();
             //sql.modify(string.Format("delete from goods where no='{0}';", r.no));
@@ -51,6 +53,8 @@ namespace 库存管理系统
 
         public object FatherPage;
         public string pageType="";
+
+        public string upLoadImgUrl = "";
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -97,6 +101,17 @@ namespace 库存管理系统
                 var r = new JSON(no.Text, name.Text, price.Text, type.Text, date.Value.ToString(), lastdate.Text, company.Text, num.Text);
                 if (JSON.updateToDatabase(r))
                 {
+                    if (upLoadImgUrl != ""){
+                        try
+                        {
+                            var base64 = FileExt.ConvertImageToBase64(upLoadImgUrl);
+                            if (sql.modify(String.Format("update goods_avator set base64=\"{1}\" where no='{0}' limit 1;", no.Text, base64)) == false)
+                            {
+                                MessageBox.Show("商品图片上传失败！\n原因：图片过大！");
+                                return;
+                            }
+                        }catch (Exception err) { MessageBox.Show(err.Message); }
+                    }
                     MessageBox.Show("修改成功！");
                     switch (pageType)
                     {
@@ -127,6 +142,24 @@ namespace 库存管理系统
             }
             else
             {
+                //商品图片验证
+                if (upLoadImgUrl != "")
+                {
+                    try
+                    {
+                        var base64 = FileExt.ConvertImageToBase64(upLoadImgUrl);
+                        if (sql.modify(String.Format("insert into goods_avaStor(no,base64) valuses('{0}',\"{1}\")", no.Text, base64)) == false)
+                        {
+                            MessageBox.Show("商品上传成功！\n商品图片上传失败！\n原因：图片过大！\n请修改大小后再尝试上传图片");
+                        }
+                    }
+                    catch (Exception err) { MessageBox.Show(err.Message); }
+                }
+                else
+                {
+                    sql.modify(String.Format("insert into goods_avator(no,base64) valuse('{0}',\"{1}\")", no.Text, ""));
+                }
+
                 MessageBox.Show("添加成功！");
                 switch (pageType)
                 {
@@ -162,12 +195,25 @@ namespace 库存管理系统
         {
             if (MessageBox.Show("确定重置所填内容吗？", "", MessageBoxButtons.OKCancel) != DialogResult.OK) return;
             no.Text = name.Text = price.Text = type.Text = date.Text = lastdate.Text = company.Text = num.Text = "";
+            if (this.Text == "修改商品属性")
+            {
+                no.Text = r.no;
+                name.Text = r.name;
+                price.Text = r.price;
+                type.Text = r.type;
+                date.Text = r.date;
+                lastdate.Text = r.lastdate;
+                company.Text = r.company;
+                num.Text = r.num;
+            }
         }
 
         private void AddGoods_Load(object sender, EventArgs e)
         {
+            
             if (this.pageType == "readOnly")
             {
+                button5_Click();
                 this.Text = "商品详情";
                 button2.Visible = false;
                 button1.Visible = false;
@@ -179,7 +225,19 @@ namespace 库存管理系统
                 lastdate.Enabled = false;
                 company.Enabled = false;
                 num.Enabled = false;
+                button3.Visible = false;
+                button4.Visible = false;
+                button5.Visible = false;
+                plus_png.Visible = false;
+                label10.Visible = false;
             }
+
+            if(this.Text == "修改商品属性")
+            {
+                num.Enabled = false;
+            }
+
+            button5_Click();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -191,9 +249,46 @@ namespace 库存管理系统
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 avator.Image = Image.FromFile(dialog.FileName);
+                upLoadImgUrl = dialog.FileName;
                 //var sss = FileExt.ConvertImageToBase64(dialog.FileName);
                 //avator.Image = FileExt.ConvertBase64ToImage(sss);
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            button5_Click();
+        }
+        private void button5_Click()
+        {
+            button5.Enabled = false;
+            button5.Text = "加载中";
+            upLoadImgUrl = "";
+            avator.Image = null;
+            if (this.Text == "修改商品属性" || this.pageType == "readOnly")
+            {
+                try
+                {
+                    avator.Image = FileExt.ConvertBase64ToImage(new Msql().select(String.Format("select convert (base64 using utf8) from goods_avator where no='{0}';", no.Text))[0][0]);
+                }
+                catch (Exception) { }
+                finally
+                {
+                    button5.Enabled = true;
+                    button5.Text = "重置图片";
+                }
+            }
+            button5.Enabled = true;
+            button5.Text = "重置图片";
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }

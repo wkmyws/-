@@ -62,6 +62,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -137,10 +139,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(124, 376);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(254, 376);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(218, 41);
+            this.button1.Size = new System.Drawing.Size(440, 41);
             this.button1.TabIndex = 6;
             this.button1.Text = "  添加商品";
             this.button1.UseVisualStyleBackColor = true;
@@ -150,7 +152,7 @@
             // 
             this.no.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.no.Location = new System.Drawing.Point(124, 33);
-            this.no.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.no.Margin = new System.Windows.Forms.Padding(4);
             this.no.Name = "no";
             this.no.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.no.Size = new System.Drawing.Size(217, 25);
@@ -160,7 +162,7 @@
             // 
             this.name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.name.Location = new System.Drawing.Point(124, 76);
-            this.name.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.name.Margin = new System.Windows.Forms.Padding(4);
             this.name.Name = "name";
             this.name.Size = new System.Drawing.Size(217, 25);
             this.name.TabIndex = 8;
@@ -169,7 +171,7 @@
             // 
             this.price.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.price.Location = new System.Drawing.Point(124, 117);
-            this.price.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.price.Margin = new System.Windows.Forms.Padding(4);
             this.price.Name = "price";
             this.price.Size = new System.Drawing.Size(217, 25);
             this.price.TabIndex = 9;
@@ -178,7 +180,7 @@
             // 
             this.type.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.type.Location = new System.Drawing.Point(124, 153);
-            this.type.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.type.Margin = new System.Windows.Forms.Padding(4);
             this.type.Name = "type";
             this.type.Size = new System.Drawing.Size(217, 25);
             this.type.TabIndex = 10;
@@ -187,7 +189,7 @@
             // 
             this.lastdate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lastdate.Location = new System.Drawing.Point(124, 236);
-            this.lastdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lastdate.Margin = new System.Windows.Forms.Padding(4);
             this.lastdate.Name = "lastdate";
             this.lastdate.Size = new System.Drawing.Size(217, 25);
             this.lastdate.TabIndex = 12;
@@ -195,7 +197,7 @@
             // date
             // 
             this.date.Location = new System.Drawing.Point(124, 193);
-            this.date.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.date.Margin = new System.Windows.Forms.Padding(4);
             this.date.Name = "date";
             this.date.Size = new System.Drawing.Size(216, 25);
             this.date.TabIndex = 13;
@@ -214,7 +216,7 @@
             // 
             this.company.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.company.Location = new System.Drawing.Point(124, 279);
-            this.company.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.company.Margin = new System.Windows.Forms.Padding(4);
             this.company.Name = "company";
             this.company.Size = new System.Drawing.Size(217, 25);
             this.company.TabIndex = 15;
@@ -222,11 +224,11 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(16, 376);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(86, 41);
+            this.button2.Size = new System.Drawing.Size(198, 41);
             this.button2.TabIndex = 16;
-            this.button2.Text = "  清空";
+            this.button2.Text = "  重置";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -234,7 +236,7 @@
             // 
             this.num.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.num.Location = new System.Drawing.Point(124, 321);
-            this.num.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.num.Margin = new System.Windows.Forms.Padding(4);
             this.num.Name = "num";
             this.num.Size = new System.Drawing.Size(217, 25);
             this.num.TabIndex = 18;
@@ -254,7 +256,7 @@
             // 
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
             this.pictureBox7.Location = new System.Drawing.Point(8, 330);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(25, 25);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -265,7 +267,7 @@
             // 
             this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
             this.pictureBox8.Location = new System.Drawing.Point(8, 282);
-            this.pictureBox8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox8.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(25, 25);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -276,7 +278,7 @@
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
             this.pictureBox4.Location = new System.Drawing.Point(8, 235);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(25, 25);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -287,7 +289,7 @@
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
             this.pictureBox5.Location = new System.Drawing.Point(8, 193);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(25, 25);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -298,7 +300,7 @@
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
             this.pictureBox6.Location = new System.Drawing.Point(8, 153);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(25, 25);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -309,7 +311,7 @@
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(8, 112);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(25, 25);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -320,7 +322,7 @@
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(8, 73);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(25, 25);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -331,7 +333,7 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(8, 33);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(25, 25);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -342,8 +344,8 @@
             // 
             this.plus_png.Enabled = false;
             this.plus_png.Image = ((System.Drawing.Image)(resources.GetObject("plus_png.Image")));
-            this.plus_png.Location = new System.Drawing.Point(186, 386);
-            this.plus_png.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.plus_png.Location = new System.Drawing.Point(409, 387);
+            this.plus_png.Margin = new System.Windows.Forms.Padding(4);
             this.plus_png.Name = "plus_png";
             this.plus_png.Size = new System.Drawing.Size(19, 19);
             this.plus_png.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -354,8 +356,8 @@
             // 
             this.pictureBox18.Enabled = false;
             this.pictureBox18.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox18.Image")));
-            this.pictureBox18.Location = new System.Drawing.Point(29, 387);
-            this.pictureBox18.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox18.Location = new System.Drawing.Point(83, 387);
+            this.pictureBox18.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox18.Name = "pictureBox18";
             this.pictureBox18.Size = new System.Drawing.Size(19, 19);
             this.pictureBox18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -366,7 +368,7 @@
             // 
             this.avator.Location = new System.Drawing.Point(347, 129);
             this.avator.Name = "avator";
-            this.avator.Size = new System.Drawing.Size(347, 306);
+            this.avator.Size = new System.Drawing.Size(347, 218);
             this.avator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.avator.TabIndex = 53;
             this.avator.TabStop = false;
@@ -410,6 +412,28 @@
             this.button4.TabIndex = 57;
             this.button4.Text = "网络图片  链接上传";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(468, 76);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(102, 47);
+            this.button5.TabIndex = 58;
+            this.button5.Text = "重置图片";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(595, 350);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(97, 15);
+            this.linkLabel1.TabIndex = 59;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "点击查看大图";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // AddGoods
             // 
@@ -418,6 +442,8 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(706, 443);
+            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label10);
@@ -452,7 +478,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddGoods";
@@ -512,5 +538,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

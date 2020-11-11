@@ -13,7 +13,13 @@ namespace 库存管理系统
         // 图像转base64
         public static string ConvertImageToBase64(string imagefile)
         {
-            return Convert.ToBase64String(System.IO.File.ReadAllBytes(imagefile));
+            Image file = Image.FromFile(imagefile);
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                file.Save(memoryStream, file.RawFormat);
+                byte[] imageBytes = memoryStream.ToArray();
+                return Convert.ToBase64String(imageBytes);
+            }
         }
 
         // base64转图像
