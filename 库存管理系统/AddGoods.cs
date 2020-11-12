@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.IO;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Net;
 
 namespace 库存管理系统
 {
@@ -104,7 +105,8 @@ namespace 库存管理系统
                     if (upLoadImgUrl != ""){
                         try
                         {
-                            var base64 = FileExt.ConvertImageToBase64(upLoadImgUrl);
+                            //var base64 = FileExt.ConvertImageToBase64(upLoadImgUrl);
+                            var base64 = FileExt.ConvertImageToBase64(avator.Image);
                             if (sql.modify(String.Format("update goods_avator set base64=\"{1}\" where no='{0}' limit 1;", no.Text, base64)) == false)
                             {
                                 MessageBox.Show("商品图片上传失败！\n原因：图片过大！");
@@ -147,8 +149,8 @@ namespace 库存管理系统
                 {
                     try
                     {
-                        var base64 = FileExt.ConvertImageToBase64(upLoadImgUrl);
-                        if (sql.modify(String.Format("insert into goods_avaStor(no,base64) valuses('{0}',\"{1}\")", no.Text, base64)) == false)
+                        var base64 = FileExt.ConvertImageToBase64(avator.Image);
+                        if (sql.modify(String.Format("insert into goods_avator(no,base64) values('{0}',\"{1}\")", no.Text, base64)) == false)
                         {
                             MessageBox.Show("商品上传成功！\n商品图片上传失败！\n原因：图片过大！\n请修改大小后再尝试上传图片");
                         }
@@ -213,7 +215,7 @@ namespace 库存管理系统
             
             if (this.pageType == "readOnly")
             {
-                button5_Click();
+                
                 this.Text = "商品详情";
                 button2.Visible = false;
                 button1.Visible = false;
@@ -230,6 +232,10 @@ namespace 库存管理系统
                 button5.Visible = false;
                 plus_png.Visible = false;
                 label10.Visible = false;
+                avator.Location = new Point(290, 87);
+
+                //button5_Click();
+                
             }
 
             if(this.Text == "修改商品属性")
@@ -237,11 +243,24 @@ namespace 库存管理系统
                 num.Enabled = false;
             }
 
-            button5_Click();
+            //button5_Click();
+            Time.setTimeout(500, () =>
+            {
+                Action action = delegate ()
+                {
+                    button5_Click();
+                };
+                try
+                {
+                    this.Invoke(action);
+                }
+                catch (Exception) { }
+            });
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            pictureBox9.Visible = false;
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Multiselect = false;
             dialog.Title = "选择图片文件";
@@ -255,9 +274,24 @@ namespace 库存管理系统
             }
         }
 
+        public void button4_Click(string url)
+        {
+            try
+            {
+                pictureBox9.Visible = false;
+                avator.Image = Image.FromStream(WebRequest.Create(url).GetResponse().GetResponseStream());
+                upLoadImgUrl = url;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("图片加载错误！");
+            }
+        }
+
         private void button4_Click(object sender, EventArgs e)
         {
-
+            UploadWebImgLink _upload = new UploadWebImgLink(this);
+            _upload.Show();
         }
         private void button5_Click(object sender, EventArgs e)
         {
@@ -268,14 +302,19 @@ namespace 库存管理系统
             button5.Enabled = false;
             button5.Text = "加载中";
             upLoadImgUrl = "";
-            avator.Image = null;
+            //avator.Image = null;
             if (this.Text == "修改商品属性" || this.pageType == "readOnly")
             {
                 try
                 {
+                    pictureBox9.Visible = false;
                     avator.Image = FileExt.ConvertBase64ToImage(new Msql().select(String.Format("select convert (base64 using utf8) from goods_avator where no='{0}';", no.Text))[0][0]);
                 }
-                catch (Exception) { }
+                catch (Exception)
+                {
+                    avator.Image = null;
+                    pictureBox9.Visible = true;
+                }
                 finally
                 {
                     button5.Enabled = true;
@@ -288,7 +327,9 @@ namespace 库存管理系统
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            //no.Text;
+            Avator _avator = new Avator(no.Text);
+            _avator.Show();
         }
     }
 }

@@ -64,6 +64,8 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -75,6 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.plus_png)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.avator)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -366,6 +369,7 @@
             // 
             // avator
             // 
+            this.avator.Image = ((System.Drawing.Image)(resources.GetObject("avator.Image")));
             this.avator.Location = new System.Drawing.Point(347, 129);
             this.avator.Name = "avator";
             this.avator.Size = new System.Drawing.Size(347, 218);
@@ -435,6 +439,26 @@
             this.linkLabel1.Text = "点击查看大图";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(628, 369);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(15, 15);
+            this.label11.TabIndex = 60;
+            this.label11.Text = " ";
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
+            this.pictureBox9.Location = new System.Drawing.Point(347, 128);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(347, 218);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox9.TabIndex = 61;
+            this.pictureBox9.TabStop = false;
+            this.pictureBox9.Visible = false;
+            // 
             // AddGoods
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -442,6 +466,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(706, 443);
+            this.Controls.Add(this.pictureBox9);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -477,6 +502,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.label11);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
@@ -498,6 +524,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.plus_png)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.avator)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -540,5 +567,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.PictureBox pictureBox9;
     }
 }

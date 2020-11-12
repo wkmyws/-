@@ -74,7 +74,7 @@
             this._usr.BackColor = System.Drawing.SystemColors.Window;
             this._usr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._usr.Location = new System.Drawing.Point(174, 131);
-            this._usr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this._usr.Margin = new System.Windows.Forms.Padding(4);
             this._usr.Name = "_usr";
             this._usr.Size = new System.Drawing.Size(124, 25);
             this._usr.TabIndex = 2;
@@ -83,7 +83,7 @@
             // 
             this._pwd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._pwd.Location = new System.Drawing.Point(174, 172);
-            this._pwd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this._pwd.Margin = new System.Windows.Forms.Padding(4);
             this._pwd.Name = "_pwd";
             this._pwd.Size = new System.Drawing.Size(124, 25);
             this._pwd.TabIndex = 3;
@@ -103,7 +103,7 @@
             // 
             this.登录.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.登录.Location = new System.Drawing.Point(72, 256);
-            this.登录.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.登录.Margin = new System.Windows.Forms.Padding(4);
             this.登录.Name = "登录";
             this.登录.Size = new System.Drawing.Size(225, 35);
             this.登录.TabIndex = 4;
@@ -129,7 +129,7 @@
             "管理员",
             "用户"});
             this.authority.Location = new System.Drawing.Point(174, 212);
-            this.authority.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.authority.Margin = new System.Windows.Forms.Padding(4);
             this.authority.Name = "authority";
             this.authority.Size = new System.Drawing.Size(124, 23);
             this.authority.TabIndex = 8;
@@ -138,7 +138,7 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(72, 131);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(25, 25);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -149,7 +149,7 @@
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(72, 172);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(25, 25);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -160,7 +160,7 @@
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(72, 210);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(25, 25);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -173,8 +173,8 @@
             this.paw.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("paw.BackgroundImage")));
             this.paw.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.paw.Enabled = false;
-            this.paw.Location = new System.Drawing.Point(141, 261);
-            this.paw.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.paw.Location = new System.Drawing.Point(138, 261);
+            this.paw.Margin = new System.Windows.Forms.Padding(4);
             this.paw.Name = "paw";
             this.paw.Size = new System.Drawing.Size(25, 25);
             this.paw.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -185,7 +185,7 @@
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
             this.pictureBox5.Location = new System.Drawing.Point(61, 36);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(62, 62);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -212,11 +212,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.登录);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Login";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Login_FormClosed);

@@ -22,11 +22,13 @@ namespace 库存管理系统
         private void 登录_Click(object sender, EventArgs e)
         {
             登录.Enabled = false;
+            登录.Text = "               验证身份中";
             var usr = _usr.Text;
             var pwd = _pwd.Text;
             if (usr == "" || pwd == "")
             {
                 MessageBox.Show(String.Format("{0}不能为空！",usr==""?"用户名":"密码"));
+                登录.Text = "    登录";
                 登录.Enabled=true;
                 var i= (usr == "" ? _usr.Focus() : _pwd.Focus());
                 return;
@@ -34,6 +36,7 @@ namespace 库存管理系统
             if (authority.SelectedIndex == -1)
             {
                 MessageBox.Show("未选择权限!");
+                登录.Text = "    登录";
                 登录.Enabled = true;
                 return;
             }
@@ -49,12 +52,14 @@ namespace 库存管理系统
             if (ans.Count == 0)
             {
                 MessageBox.Show("用户名和密码不匹配！");
+                登录.Text = "    登录";
                 登录.Enabled = true;
                 return;
             }
             if (sql.exist(String.Format("select * from user where usr='{0}' and authority='{1}' limit 1;", usr, au)) == false)
             {
                 MessageBox.Show("用户名和权限不匹配！");
+                登录.Text = "    登录";
                 登录.Enabled = true;
                 return;
             }

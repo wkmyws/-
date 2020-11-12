@@ -225,7 +225,7 @@ namespace 库存管理系统
                             {
                                 Convert.ToDateTime(dict[item]);
                             }
-                            catch (Exception err) { hasError = true; }
+                            catch (Exception) { hasError = true; }
                             if (hasError == false) tmp.Add(String.Format("{0} {1} '{2}'", dict[item], r.关系, r.值));
                         }
                         else tmp.Add(String.Format("{0} {1} '{2}'", dict[item], r.关系, r.值));

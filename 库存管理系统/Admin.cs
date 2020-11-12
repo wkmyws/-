@@ -27,13 +27,23 @@ namespace 库存管理系统
                 // 隐藏 商品管理和人员管理选项卡
                 tabControl1.TabPages.RemoveAt(0);
                 tabControl1.TabPages.RemoveAt(1);
+                this.tabControl1.Size = new System.Drawing.Size(857, 399);
+                flashKuCun();
+                Msql sql = new Msql();
+                comboBox1.Items.Clear();
+                sql.select("select no from goods;").ForEach(item => comboBox1.Items.Add(item[0]));
+                label15.Text = this.usrName;
             }
         }
 
         private void Admin_Load(object sender, EventArgs e)
         {
             flashData();
-            if (table.Columns.Count > 0) table.Columns[0].ReadOnly = true;// 不可更改列
+            if (table.Columns.Count > 0)
+            {
+                table.Columns["商品编号"].ReadOnly = true;// 不可更改列
+                table.Columns["数量"].ReadOnly = true;// 不可更改列
+            }
             
             button13_Click();
             this.that=this;
@@ -159,6 +169,8 @@ namespace 库存管理系统
                 lastdate.Text = r.lastdate;
                 company.Text = r.company;
                 num.Text = r.num;
+
+                break;
             }
         }
 
@@ -620,7 +632,23 @@ namespace 库存管理系统
 
         }
 
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            foreach (var r_ in table.SelectedCells)
+            {
+                int row = ((DataGridViewTextBoxCell)r_).RowIndex;
+                var r = list[row];
+                AddGoods _previewGoods = new AddGoods(this, "readOnly", r);
+                _previewGoods.Show();
+                break;
+            }
+        }
 
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Avator _avator = new Avator(no.Text);
+            _avator.Show();
+        }
     }
     
 }

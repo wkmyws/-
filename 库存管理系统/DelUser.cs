@@ -32,8 +32,10 @@ namespace 库存管理系统
             // 检测是否为外键
             if (sql.exist(String.Format("select * from record where usr='{0}' limit 1;", _usr.Text)))
             {
-                MessageBox.Show("无法删除此人员，因为他管理过库存（库存表中有此人员的操作记录）");
-                return;
+                if (MessageBox.Show("检测到此用户操作过商品库存，\n删除此用户将会把相应的库存记录一并删除，\n确定继续删除此用户吗？", "", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+                {
+                    return;
+                }
             }
             var ans = sql.modify(String.Format("delete from user where usr='{0}' and authority='{1}'", _usr.Text, authority));
             if (ans == false)
