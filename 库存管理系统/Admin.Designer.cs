@@ -76,6 +76,7 @@
             this.刷新数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.保存更改ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.pictureBox18 = new System.Windows.Forms.PictureBox();
             this.button13 = new System.Windows.Forms.Button();
@@ -131,7 +132,6 @@
             this.筛选表 = new System.Windows.Forms.DataGridView();
             this.类别 = new System.Windows.Forms.ComboBox();
             this.searchCountGrid = new System.Windows.Forms.DataGridView();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.save_png)).BeginInit();
@@ -684,6 +684,18 @@
             this.groupBox1.Size = new System.Drawing.Size(421, 459);
             this.groupBox1.TabIndex = 50;
             this.groupBox1.TabStop = false;
+            // 
+            // linkLabel4
+            // 
+            this.linkLabel4.AutoSize = true;
+            this.linkLabel4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.linkLabel4.Location = new System.Drawing.Point(273, 393);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(99, 20);
+            this.linkLabel4.TabIndex = 51;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "商品图片预览";
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
             // 
             // linkLabel3
             // 
@@ -1384,18 +1396,6 @@
             this.searchCountGrid.Size = new System.Drawing.Size(639, 386);
             this.searchCountGrid.TabIndex = 1;
             // 
-            // linkLabel4
-            // 
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.linkLabel4.Location = new System.Drawing.Point(273, 393);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(99, 20);
-            this.linkLabel4.TabIndex = 51;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "商品图片预览";
-            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
-            // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1412,7 +1412,7 @@
             this.Name = "Admin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Admin";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Admin_FormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Admin_FormClosing);
             this.Load += new System.EventHandler(this.Admin_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

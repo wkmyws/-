@@ -70,10 +70,6 @@ namespace 库存管理系统
             }
         }
 
-        private void Login_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (unexpectExit) _Main.Close();
-        }
 
         private void Login_Load(object sender, EventArgs e)
         {
@@ -82,7 +78,28 @@ namespace 库存管理系统
 
 
 
+        private void Login_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            List<String> tips = new List<string>();
+            List<List<String>> nameInfo = new List<List<string>>();
+            nameInfo.Add(new List<string> { "admin", "000", "管理员" });
+            nameInfo.Add(new List<string> { "user", "123", "用户" });
+            nameInfo.ForEach((single) =>
+            {
+                tips.Add(String.Format("用户名：{0}\n密码：{1}\n权限：{2}\n", single[0], single[1], single[2]));
+            });
+            tips.Add("本程序需要连接到云端数据库，请确保网络畅通。");
+            MessageBox.Show(String.Join("\n", tips), "登录帮助", MessageBoxButtons.OK);
+        }
 
-
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (unexpectExit)
+            {
+                if (MessageBox.Show("确定退出程序吗？", "退出提示", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    _Main.Close();
+                else e.Cancel = true;
+            }
+        }
     }
 }

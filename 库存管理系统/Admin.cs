@@ -84,14 +84,6 @@ namespace 库存管理系统
             if (table.Columns.Count > 0) table.Columns[0].ReadOnly = true;
         }
 
-        private void Admin_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (unexpectExit == true)
-            {
-                _Index.initLogin();
-            }
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             AddGoods _AddGoods = new AddGoods(this,"Admin");
@@ -648,6 +640,16 @@ namespace 库存管理系统
         {
             Avator _avator = new Avator(no.Text);
             _avator.Show();
+        }
+
+        private void Admin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (unexpectExit)
+            {
+                if (MessageBox.Show("确定返回到登录界面吗？", "返回登录界面提示", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    _Index.initLogin();
+                else e.Cancel = true;
+            }
         }
     }
     
