@@ -508,7 +508,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddGoods";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddGoods";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddGoods_FormClosed);

@@ -339,6 +339,7 @@ namespace 库存管理系统
                     Msql sql = new Msql();
                     comboBox1.Items.Clear();
                     sql.select("select no from goods;").ForEach(item => comboBox1.Items.Add(item[0]));
+                    if (comboBox1.Items.Count > 0) comboBox1.SelectedIndex = 0;
                     label15.Text = this.usrName;
                     break;
                 case "查询统计":
@@ -354,6 +355,8 @@ namespace 库存管理系统
                     类别.SelectedIndex = 0;
                     关系.SelectedIndex = 0;
                     button16Click();
+                    comboBox2.SelectedIndex = 0;
+                    comboBox3.SelectedIndex = 0;
                     break;
                 //default: MessageBox.Show("未识别的选项卡"); break;
             }
@@ -555,6 +558,12 @@ namespace 库存管理系统
             flash筛选表();
         }
 
+        private void button17_Click(object sender, EventArgs e)
+        {
+            filter_table.Add(new FILTER_TABLE(comboBox2.Text, "排序", comboBox3.Text));
+            flash筛选表();
+        }
+
         private void 筛选表_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (筛选表.Columns[e.ColumnIndex].Name == "btnDel" && e.RowIndex >= 0)
@@ -574,13 +583,22 @@ namespace 库存管理系统
 
             // 拼接 筛选表 为 sql查询语句
             List<string> filList = new List<string>();
+            List<string> orderBy = new List<string>();
             foreach (var ee in filter_table)
             {
-                filList.Add(FILTER_TABLE.toSQL(ee));
+                if (ee.关系 == "排序")
+                {
+                    orderBy.Add(FILTER_TABLE.toSQL(ee, true) + (comboBox3.Text == "从小到大" ? "" : " desc"));
+                }
+                else
+                {
+                    filList.Add(FILTER_TABLE.toSQL(ee));
+                }
             }
             var sql_where = filList.Count == 0 ? "" : (" where " + (String.Join(" and ", filList)));
+            if (orderBy.Count() > 0) sql_where += (" order by " + String.Join(",", orderBy));
             sql_where = "select * from goods left join record on goods.no=record.no " + sql_where + ";";
-
+            //MessageBox.Show(sql_where);
             // 查询并将结果显示在searchCountGrid
             var ans = new Msql().select(sql_where);
             searchCountGrid.DataSource = new EMPTY();
@@ -590,20 +608,25 @@ namespace 库存管理系统
                 searchCountAns.Add(new UNION_GOODS(ans[i]));
             }
             searchCountGrid.DataSource = searchCountAns;
-
-            //设置自动排序
-            foreach (DataGridViewColumn column in searchCountGrid.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.Automatic;
-            }
-
+            //searchCountGrid.DataSource = FileExt.ConvertToDataSet(searchCountAns);
 
             button16.Text = "筛            选";
             button16.Enabled = true;
+            updateTips();
         }
         private void button16_Click(object sender, EventArgs e)
         {
             button16Click();
+            checkBox1_CheckedChanged(sender, e);
+        }
+
+        private void updateTips()
+        {
+            var unique_no_num = searchCountAns.Where((x, i) => searchCountAns.FindIndex(z => z.no == x.no) == i).Count();
+            var ruku = searchCountAns.Where((x, i) => x.opNum != "" && Convert.ToDecimal(x.opNum) > 0).Count();
+            var chuku = searchCountAns.Where((x, i) => x.opNum != "" && Convert.ToDecimal(x.opNum) < 0).Count();
+            var n = String.Format("共筛选了 {0} 条记录\n包含：\n{1} 件商品\n{2} 条入库记录\n{3} 条出库记录", searchCountAns.Count(),unique_no_num,ruku,chuku);
+            tips.Text = n;
         }
 
         private void 类别_SelectionChangeCommitted(object sender, EventArgs e)
@@ -616,7 +639,7 @@ namespace 库存管理系统
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("自己摸索吧");
+            MessageBox.Show("在右侧面板添加若干筛选项后点击“筛选”可筛选结果。\n“添加排序项”可以按添加顺序进行结果排序。\n在“其他筛选”里可以自定义更多筛选内容。\n点击“筛选”按钮进行结果检索。\n双击左侧表格中筛选结果的任一单元格可查看商品详细信息。");
         }
 
         private void tabPage2_Click(object sender, EventArgs e)
@@ -651,6 +674,60 @@ namespace 库存管理系统
                 else e.Cancel = true;
             }
         }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            foreach (var r_ in dataGridView1.SelectedCells)
+            {
+                int row = ((DataGridViewTextBoxCell)r_).RowIndex;
+                var r = kucunData[row];
+                comboBox1.Text = r.商品编号;
+                comboBox1_COMPLETE();
+
+                break;
+            }
+        }
+
+        private void searchCountGrid_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            foreach (var r_ in searchCountGrid.SelectedCells)
+            {
+                int row = ((DataGridViewTextBoxCell)r_).RowIndex;
+                string no = "";
+                if (checkBox1.Checked)
+                {
+                    var tmp = (searchCountAns.Where((x, i) => searchCountAns.FindIndex(z => z.no == x.no) == i)).ToList();
+                    no = tmp[row].商品编号;
+                }
+                else no = searchCountAns[row].商品编号;
+                var ans = new Msql().select(String.Format("select no,name,price,type,date,lastdate,company,num from goods where no='{0}';", no));
+                JSON r;
+                if (ans.Count() == 0)
+                {
+                    r = new JSON("", "", "", "", "", "", "", "");
+                }
+                else
+                    r = new JSON(ans[0][0], ans[0][1], ans[0][2], ans[0][3], ans[0][4], ans[0][5], ans[0][6], ans[0][7]);
+                AddGoods _previewGoods = new AddGoods(this, "readOnly", r);
+                _previewGoods.Show();
+                break;
+            }
+        }
+        
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                searchCountGrid.DataSource = searchCountAns.Where((x, i) => searchCountAns.FindIndex(z => z.no == x.no) == i).ToList();
+            }
+            else
+            {
+                searchCountGrid.DataSource = searchCountAns;
+            }
+        }
+
+        
     }
     
 }

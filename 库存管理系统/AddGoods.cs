@@ -145,7 +145,7 @@ namespace 库存管理系统
             else
             {
                 //商品图片验证
-                if (upLoadImgUrl != "")
+                if (upLoadImgUrl != ""||true)
                 {
                     try
                     {
@@ -302,6 +302,7 @@ namespace 库存管理系统
             button5.Enabled = false;
             button5.Text = "加载中";
             upLoadImgUrl = "";
+            
             //avator.Image = null;
             if (this.Text == "修改商品属性" || this.pageType == "readOnly")
             {
@@ -321,6 +322,10 @@ namespace 库存管理系统
                     button5.Text = "重置图片";
                 }
             }
+            else
+            {
+                avator.Image = pictureBox9.Image;
+            }
             button5.Enabled = true;
             button5.Text = "重置图片";
         }
@@ -328,7 +333,7 @@ namespace 库存管理系统
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             //no.Text;
-            Avator _avator = new Avator(no.Text);
+            Avator _avator = new Avator(avator.Image);
             _avator.Show();
         }
     }

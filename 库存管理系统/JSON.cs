@@ -183,8 +183,10 @@ namespace 库存管理系统
             this.op = op;
             this.val = val;
         }
-        public static string toSQL(FILTER_TABLE r)
+        public static string toSQL(FILTER_TABLE r,bool justDict=false)
         {
+            var replaceStr = "";
+
             Dictionary<string, string> dict = new Dictionary<string, string>();
             dict.Add("商品编号", "goods.no");
             dict.Add("商品名称", "name");
@@ -200,6 +202,11 @@ namespace 库存管理系统
             dict.Add("入库数量", "opNum");
             dict.Add("出库数量", "opNum");
 
+            if (justDict)
+            {
+                return dict[r.类别];
+            }
+
             if (r.type == "全文搜索")
             {
                 List<string> tmp = new List<string>();
@@ -211,11 +218,13 @@ namespace 库存管理系统
                         {
                             if (new Regex(">").IsMatch(r.关系))
                             {
-                                r.关系 = new Regex(">").Replace(r.关系, "<");
+                                replaceStr = new Regex(">").Replace(r.关系, "<");
                             }
-                            else r.关系 = new Regex("<").Replace(r.关系, ">");
-
-                            tmp.Add(String.Format("({0} {1} -{2} and opNum<=0)", dict[item], r.关系, r.值));
+                            else
+                            {
+                                replaceStr = new Regex("<").Replace(r.关系, ">");
+                            }
+                            tmp.Add(String.Format("({0} {1} -{2} and opNum<=0)", dict[item], replaceStr, r.值));
                         }
                         else if (item == "入库数量") tmp.Add(String.Format("({0} {1} '{2}' and opNum>=0)", dict[item], r.关系, r.值));
                         else if (item == "生产日期")
@@ -236,6 +245,7 @@ namespace 库存管理系统
                     }
                     
                 }
+
                 return "(" + String.Join(" or ", tmp) + ")";
             }
 
@@ -247,11 +257,11 @@ namespace 库存管理系统
                 {
                     if (new Regex(">").IsMatch(r.关系))
                     {
-                        r.关系 = new Regex(">").Replace(r.关系, "<");
+                        replaceStr = new Regex(">").Replace(r.关系, "<");
                     }
-                    else r.关系 = new Regex("<").Replace(r.关系, ">");
+                    else replaceStr = new Regex("<").Replace(r.关系, ">");
 
-                    _tmp.Add(String.Format("({0} {1} -{2} and opNum<=0)", dict[_item], r.关系, r.值));
+                    _tmp.Add(String.Format("({0} {1} -{2} and opNum<=0)", dict[_item], replaceStr, r.值));
                 }
                 else if (_item == "入库数量") _tmp.Add(String.Format("({0} {1} '{2}' and opNum>=0)", dict[_item], r.关系, r.值));
                 else _tmp.Add(String.Format("{0} {1} '{2}'", dict[_item], r.关系, r.值));

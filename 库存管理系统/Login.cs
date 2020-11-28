@@ -48,6 +48,13 @@ namespace 库存管理系统
                 default: MessageBox.Show("权限对应错误！"); break;
             }
             Msql sql = new Msql();
+            if (sql.reach() == false)
+            {
+                MessageBox.Show("无网络连接！");
+                登录.Text = "    登录";
+                登录.Enabled = true;
+                return;
+            }
             List<List<string>> ans = sql.select("select authority from user where usr='" + usr + "' and pwd='" + pwd + "' limit 1;");
             if (ans.Count == 0)
             {
@@ -100,6 +107,12 @@ namespace 库存管理系统
                     _Main.Close();
                 else e.Cancel = true;
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            devOpts _devOpts = new devOpts();
+            _devOpts.Show();
         }
     }
 }

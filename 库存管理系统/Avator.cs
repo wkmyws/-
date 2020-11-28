@@ -18,11 +18,6 @@ namespace 库存管理系统
             InitializeComponent();
             if (no == "") return;
             this.no = no;
-            
-        }
-
-        private void Avator_Load(object sender, EventArgs e)
-        {
             Time.setTimeout(500, () =>
             {
                 Action action = delegate ()
@@ -46,6 +41,37 @@ namespace 库存管理系统
                 };
                 try { this.Invoke(action); } catch (Exception) { }
             });
+        }
+        public Avator(Image img)
+        {
+            InitializeComponent();
+            Time.setTimeout(500, () =>
+            {
+                Action action = delegate ()
+                {
+                    try
+                    {
+                        pictureBox1.Image = img;
+                    }
+                    catch (Exception)
+                    {
+                        pictureBox2.Visible = true;
+                        pictureBox1.Visible = false;
+                    }
+                    finally
+                    {
+                        int xWidth = SystemInformation.PrimaryMonitorSize.Width;//获取显示器屏幕宽度
+                        int yHeight = SystemInformation.PrimaryMonitorSize.Height;//高度
+                        this.Location = new Point(xWidth / 2 - this.Width / 2, yHeight / 2 - this.Height / 2);
+                    }
+                };
+                try { this.Invoke(action); } catch (Exception) { }
+            });
+        }
+
+        private void Avator_Load(object sender, EventArgs e)
+        {
+           
         }
     }
 }

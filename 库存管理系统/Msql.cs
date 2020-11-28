@@ -4,16 +4,30 @@ using System.Linq;
 using System.Text;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using System.Data;
 
 namespace 库存管理系统
 {
     class Msql
     {
         public MySqlConnection conn;
+        public static string connstr = "data source=47.96.235.211;database=dotnet;user id=c#;password=2212;pooling=false;charset=utf8";//pooling代表是否使用连接池
         public Msql()
         {
-            string connstr = "data source=47.96.235.211;database=dotnet;user id=c#;password=2212;pooling=false;charset=utf8";//pooling代表是否使用连接池
             conn = new MySqlConnection(connstr);
+        }
+        public bool reach()
+        {
+            try
+            {
+                conn.Open();
+                conn.Close();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
         public bool modify(string sql)// 数据表增删改 是否成功
         {
@@ -77,4 +91,5 @@ namespace 库存管理系统
         }
 
     }
+    
 }
